@@ -7,15 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'my_bevy_game'",
+            "name": "Debug executable 'pixel-gardener'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=my_bevy_game",
-                    "--package=my_bevy_game"
+                    "--bin=pixel-gardener",
+                    "--package=pixel-gardener"
                 ],
                 "filter": {
-                    "name": "my_bevy_game",
+                    "name": "pixel-gardener",
                     "kind": "bin"
                 }
             },
@@ -28,16 +28,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'my_bevy_game'",
+            "name": "Debug unit tests in executable 'pixel-gardener'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=my_bevy_game",
-                    "--package=my_bevy_game"
+                    "--bin=pixel-gardener",
+                    "--package=pixel-gardener"
                 ],
                 "filter": {
-                    "name": "my_bevy_game",
+                    "name": "pixel-gardener",
                     "kind": "bin"
                 }
             },
