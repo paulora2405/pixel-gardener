@@ -131,7 +131,7 @@ pub fn character_animation(
         &mut TextureAtlasSprite,
     )>,
 ) {
-    for (mut animation, state, looking_dir, mut sprite) in &mut player_q {
+    for (mut animation, state, looking_dir, mut sprite_atlas) in &mut player_q {
         match state {
             PlayerState::Idle => {
                 animation.timer.pause();
@@ -139,22 +139,23 @@ pub fn character_animation(
                 animation
                     .timer
                     .set_elapsed(Duration::from_secs_f32(ANIMATION_DURATION_SECONDS));
-                sprite.index = animation.idle_idx;
+                sprite_atlas.index = animation.idle_idx;
             }
             PlayerState::Running => {
                 animation.timer.unpause();
                 animation.timer.tick(time.delta());
                 if animation.timer.just_finished() {
-                    if sprite.index == animation.idle_idx || sprite.index == animation.run_last_idx
+                    if sprite_atlas.index == animation.idle_idx
+                        || sprite_atlas.index == animation.run_last_idx
                     {
-                        sprite.index = animation.run_first_idx;
+                        sprite_atlas.index = animation.run_first_idx;
                     } else {
-                        sprite.index += 1;
+                        sprite_atlas.index += 1;
                     };
                 }
                 match looking_dir {
-                    LookingDirection::Right => sprite.flip_x = false,
-                    LookingDirection::Left => sprite.flip_x = true,
+                    LookingDirection::Right => sprite_atlas.flip_x = false,
+                    LookingDirection::Left => sprite_atlas.flip_x = true,
                 };
             }
         };
